@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pierre, feuille, ciseau</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Choix de l'ordinateur : <span id="computer-choice"></span></h2>
+  <h2>Ton choix : <span id="user-choice"></span></h2>
+  <h2>Résultat : <span id="result"></span></h2>
+ 
+  <img src="images/Rock-paper-scissors_(rock).png" alt="pierre" id="pierre" width="100" onclick="toggleVisibility('pierre')">
+  <img src="images/Rock-paper-scissors_(paper).png" alt="feuille" id="feuille" class="hidden" onclick="toggleVisibility('feuille')" width="100">
+  <img src="images/Rock-paper-scissors_(scissors).png" alt="ciseau" id="ciseau" class="hidden" onclick="toggleVisibility('ciseau')" width="100">
+  <button id="play" disabled>Jouer</button>
+  <script src="script.js"></script>
+</body>
+</html>
