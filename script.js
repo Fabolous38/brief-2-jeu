@@ -25,8 +25,8 @@ function selectChoice() {
     document.getElementById("opponent-choice").src = opponent + ".png";
 
     if (you == opponent) {
-        yourScore += 1;
-        opponentScore += 1;
+        yourScore += 0;
+        opponentScore += 0;
     }
     else {
         if (you == "rock") {
