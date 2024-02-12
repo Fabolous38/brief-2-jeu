@@ -1,55 +1,60 @@
-const computerChoiceDisplay = document.getElementById('computer-choice');
-const userChoiceDisplay = document.getElementById('user-choice');
-const resultDisplay = document.getElementById('result');
-const choices = document.querySelectorAll('img');
-const playButton = document.getElementById('play');
 
-let userChoice;
+var you;
+var yourScore = 0;
+var opponent;
+var opponentScore = 0;
 
-choices.forEach(img => {
-  img.addEventListener('click', () => {
-    userChoice = img.id;
-    playButton.disabled = false;
-  });
-});
+var choices = ["rock", "paper", "scissors"];
 
-
-
-playButton.addEventListener('click', () => {
-  const computerChoice = getComputerChoice();
-  computerChoiceDisplay.textContent = computerChoice;
-  userChoiceDisplay.textContent = userChoice;
-  const result = getResult(userChoice, computerChoice);
-  resultDisplay.textContent = result;
-});
-
-function getComputerChoice() {
-  const choices = ['pierre', 'feuille', 'ciseau'];
-  const randomIndex = Math.floor(Math.random() * choices.length);
-  return choices[randomIndex];
+window.onload = function() {
+    for (let i = 0; i < 3; i++) {
+        let choice = document.createElement("img");
+        choice.id = choices[i];
+        choice.src = choices[i] + "images/.png";
+        choice.addEventListener("click", selectChoice);
+        document.getElementById("choices").append(choice);
+    }
 }
 
+function selectChoice() {
+    you = this.id;
+    document.getElementById("your-choice").src = you + "images/.png";
 
-function getResult(user, computer) {
-  if (user === computer) {
-    return "Égalité";
-  } else if (
-    (user === 'pierre' && computer === 'ciseau') ||
-    (user === 'feuille' && computer === 'pierre') ||
-    (user === 'ciseau' && computer === 'feuille')
-  ) {
-    return 'Gagné';
-  } else {
-    return 'Perdu';
-  }
-}
+    //random for oppponent
+    opponent = choices[Math.floor(Math.random() * 3)]; //0- .999999 * 3 = 0-2.99999
+    document.getElementById("opponent-choice").src = opponent + "images/.png";
 
+    if (you == opponent) {
+        yourScore += 1;
+        opponentScore += 1;
+    }
+    else {
+        if (you == "rock") {
+            if (opponent == "scissors") {
+                yourScore += 1;
+            }
+            else if (opponent == "paper") {
+                opponentScore += 1;
+            }
+        }
+        else if (you == "scissors") {
+            if (opponent == "paper") {
+                yourScore += 1;
+            }
+            else if (opponent == "rock") {
+                opponentScore += 1;
+            }
+        }
+        else if (you == "paper") {
+            if (opponent == "rock") {
+                yourScore += 1;
+            }
+            else if (opponent == "scissors") {
+                opponentScore += 1;
+            }
+        }
+    }
 
-function toggleVisibility(imageId) {
-  let images = document.getElementsByTagName('img');
-  for (let i = 0; i < images.length; i++) {
-    images[i].classList.add('hidden');
-  }
-  let selectImage = document.getElementById(imageId);
-  selectImage.classList.remove('hidden')
+    document.getElementById("your-score").innerText = yourScore;
+    document.getElementById("opponent-score").innerText = opponentScore;
 }
