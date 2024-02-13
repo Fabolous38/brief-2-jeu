@@ -1,10 +1,10 @@
 
-var you;
-var yourScore = 0;
-var opponent;
-var opponentScore = 0;
+let you;
+let yourScore = 0;
+let opponent;
+let opponentScore = 0;
 
-var choices = ["rock", "paper", "scissors"];
+let choices = ["rock", "paper", "scissors"];
 
 window.onload = function() {
     for (let i = 0; i < 3; i++) {
@@ -20,8 +20,8 @@ function selectChoice() {
     you = this.id;
     document.getElementById("your-choice").src = you + ".png";
 
-    //random for oppponent
-    opponent = choices[Math.floor(Math.random() * 3)]; //0- .999999 * 3 = 0-2.99999
+    
+    opponent = choices[Math.floor(Math.random() * 3)]; 
     document.getElementById("opponent-choice").src = opponent + ".png";
 
     if (you == opponent) {
@@ -52,6 +52,12 @@ function selectChoice() {
             else if (opponent == "scissors") {
                 opponentScore += 1;
             }
+        }
+
+        if (yourScore === 5) {
+            console.log("Bravo vous avez gagné");
+        } else if (opponentScore === 5) {
+            console.log("Vous avez perdu");
         }
     }
 
